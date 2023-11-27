@@ -1,0 +1,351 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+  <title></title>
+  <style>
+
+  html, body { height: 100%;
+  }
+
+  body {
+      background: radial-gradient(ellipse at center, rgba(255, 254, 234, 1) 0%, rgba(255, 254, 234, 1) 35%, #B7E8EB 100%);
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+
+  .ocean { 
+    height: 5%;
+    width:100%;
+    position:absolute;
+    bottom:0;
+    left:0;
+    background: #015871;
+  }
+
+  .wave {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x; 
+    position: absolute;
+    overflow: hidden;
+    top: -198px;
+    width: 6400px;
+    height: 198px;
+    animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .wave:nth-of-type(2) {
+    top: -175px;
+    animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
+    opacity: 1;
+  }
+
+  @keyframes wave {
+    0% {
+      margin-left: 0;
+    }
+    100% {
+      margin-left: -1600px;
+    }
+  }
+
+  @keyframes swell {
+    0%, 100% {
+      transform: translate3d(0,-25px,0);
+    }
+    50% {
+      transform: translate3d(0,5px,0);
+    }
+  }
+  .nave-item.dropdown{
+    overflow: hidden;
+  }
+  .modal-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-container {
+  flex-basis: calc(33.33% - 10px); /* Adjust the width and spacing as needed */
+  text-align: center;
+  margin-right: 10px; /* Add space between each image-container */
+  box-sizing: border-box;
+}
+
+.image-container:last-child {
+  margin-right: 0; /* Remove margin from the last image-container */
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+  </style>
+  </head>
+  <body>
+    <div class="ocean">
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
+    <!--the title-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+      <div class="container-fluid">
+        <i class="bi bi-water"></i>
+        <a class="navbar-brand" href="# Title">SeaMarket</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--the buttons -->
+        <div class="collapse navbar-collapse ml-auto" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <button class="btn btn primary" data-bs-toggle="modal"
+              data-bs-target="#reg-modal">
+            Sign in
+            </button>
+            <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Sign In</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-12">
+                        <label for="modal-email" class="form-label">Email Address:</label>
+                        <input type="email" class="form-control" id="modal-email" placeholder="e.g. mario@example.com">
+                      </div>
+                      <div class="col-12">
+                        <label for="pass" class="form-label">Password:</label>
+                        <input type="text" class="form-control" id="pass" placeholder="e.g. mario123">
+                      </div>
+                      <div class="col-12">
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" placeholder="e.g. Mario">
+                      </div>
+                      <div class="col-12">
+                        <label for="gender" class="form-label">Gender:</label>
+                        <select class="form-select" id="gender">
+                          <option value="g1">Male</option>
+                          <option value="g2">Female</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="modal-footer">
+                    <button onclick="sayHello();"class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#specials">Specials</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About us</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Menu
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalAsianCorner">Asian Corner</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalPizzaPasta">Pizza and Pasta</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalRawFish">Raw Fish</a></li>
+              </ul>
+            </li>  
+          </div>
+          <!-- Right-aligned content -->
+          <div class="ml-auto" id="content"></div>
+      </div>   
+            <!-- Modal for "Asian Corner" -->
+<div class="modal fade" id="modalAsianCorner" tabindex="-1" aria-labelledby="modalAsianCornerLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalAsianCornerLabel">Asian Corner</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="image-container">
+          <img src="https://i0.wp.com/www.wokandkin.com/wp-content/uploads/2023/04/Sardines-in-Tomato-Sauce-Angled-saved-for-web.png?resize=500%2C500&ssl=1" alt="Image 1">
+          <p class="display-5 my-4 text-secondary fw-bold">65 EGP</p>
+          <p class="lead image-subtitle">A bowl of red sauce with sardines in it</p>
+          <button class="btn btn-secondary">Add to cart</button>
+        </div>
+        <div class="image-container">
+          <img src="https://e7.pngegg.com/pngimages/17/588/png-clipart-sushi-asian-cuisine-japanese-cuisine-onigiri-food-seafood-platter-food-seafood-thumbnail.png" alt="Image 2">
+          <p class="display-5 my-4 text-secondary fw-bold">599 EGP</p>
+          <p class="lead image-subtitle">30 pieces of sushi from your choice</p>
+          <button class="btn btn-secondary">Add to cart</button>
+        </div>
+        <div class="image-container">
+          <img src="https://pupswithchopsticks.com/wp-content/uploads/MSN-ketchup-shrimp.jpg" alt="Image 3">
+          <p class="display-5 my-4 text-secondary fw-bold">499 EGP</p>
+          <p class="lead image-subtitle">1000 gm of grilled shrimps on the woods</p>
+          <button class="btn btn-secondary">Add to cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for "Pizza and Pasta" -->
+<div class="modal fade" id="modalPizzaPasta" tabindex="-1" aria-labelledby="modalPizzaPastaLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalPizzaPastaLabel">Pizza and Pasta</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="image-container">
+          <img src="https://i.pinimg.com/564x/69/07/0c/69070c8ef63b0669d8065463b6ecebaa.jpg" alt="Pizza Image">
+          <p class="display-5 my-4 text-secondary fw-bold">265 EGP</p>
+          <p class="lead image-subtitle">White sauce pasta with shrimps and some octopus legs</p>
+          <button class="btn btn-secondary">Add to cart</button>
+        </div>
+        <div class="image-container">
+          <img src="https://i.pinimg.com/564x/f5/4d/1a/f54d1af7a682f2f4308968a32ff87a22.jpg" alt="Pizza Image">
+          <p class="display-5 my-4 text-secondary fw-bold">425 EGP</p>
+          <p class="lead image-subtitle">Smoked salmon and crème fraîche pizza</p>
+          <button class="btn btn-secondary">Add to cart</button>
+        </div>
+        <div class="image-container">
+          <img src="https://pupswithchopsticks.com/wp-content/uploads/MSN-ketchup-shrimp.jpg" alt="Pizza Image">
+          <p class="display-5 my-4 text-secondary fw-bold">499 EGP</p>
+          <p class="lead image-subtitle">Mix of fresh and dried herbs, olives, feta, tasty cheese, and the marinara mix, consisting of prawns, fish, calamari, and mussels</p>
+          <button class="btn btn-secondary">Add to cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+              <!-- modal for raw fish -->
+              <div class="modal fade" id="modalRawFish" tabindex="-1" aria-labelledby="modalRawFishLabel" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="modalRawFishLabel">Raw Fish</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="image-container">
+                        <img src="https://i.pinimg.com/564x/b9/c3/48/b9c3489ba7c2757bf23759869691f46a.jpg" alt="Raw Image">
+                        <p class="display-5 my-4 text-secondary fw-bold">330 EGP</p>
+                        <p class="lead image-subtitle">250 gm of fresh salamon</p>
+                        <button class="btn btn-secondary">Add to cart</button>
+                      </div>
+                      <div class="image-container">
+                        <img src="https://i.pinimg.com/236x/92/e2/d4/92e2d4e6745e365ccf314d6c86d0bee0.jpg" alt="Raw Image">
+                        <p class="display-5 my-4 text-secondary fw-bold">225 EGP</p>
+                        <p class="lead image-subtitle">500 gm of fillet</p>
+                        <button class="btn btn-secondary">Add to cart</button>
+                      </div>
+                      <div class="image-container">
+                        <img src="https://i.pinimg.com/564x/19/1d/34/191d344a2041da87eb66a6abd7522f4a.jpg" alt="Raw Image">
+                        <p class="display-5 my-4 text-secondary fw-bold">199 EGP</p>
+                        <p class="lead image-subtitle">Fresh tuna fish</p>
+                        <button class="btn btn-secondary">Add to cart</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<!-- Create similar modals for "Pizza and Pasta" and "Raw Fish" -->
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section id="home">
+      <div class="container-lg">
+        <div class="row justify-content-center allign-items-center">
+        <div class="col-md-5 text-center text-md-start">
+          <h1 style="font-family: fantasy;">
+            Welcome To SeaMarket
+          </h1>
+        </div>
+      </div>
+    </div>
+    </section>
+    <!--the cards-->
+  <!-- Modify the section for specials -->
+  <section id="specials" class="bg-light mt-5" style="background-image: url('your-background-image-url.jpg'); background-size: cover; background-position: center;background-attachment: fixed;">
+    <div class="container-lg">
+      <div class="text-center">
+        <h2 style="bottom: 0;">Special offers</h2>
+        <p class="lead text-muted" style="bottom: 0;">Because good food is good mood</p>
+      </div>
+      <div class="container">
+        <div class="row my-5 align-items-center justify-content-center ">
+          <div class="col-8 col-lg-4 col-xl-3">
+            <div class="card border-secondary border-2">
+              <div class="card-body text-center py-4">
+                <h4 class="card-title">Ordinary Plate</h4>
+                <p class="lead card-subtitle">Offer a seafood platter that includes a variety of seafood items (A fried mole and 200 gm squid)</p>
+                <p class="display-5 my-4 text-secondary fw-bold">399 EGP</p>
+                <a href="#" class="btn btn-outline-secondary btn-md mt-3">Buy Now</a>
+              </div>
+            </div>
+          </div>
+        <div class="col-9 col-lg-4">
+          <div class="card border-primary border-2">
+            <div class="card-header text-center text-primary">Best Offer</div>
+            <div class="card-body text-center py-4">
+              <h4 class="card-title">Loyal Customers</h4>
+              <p class="lead card-subtitle">On your 5th visit</p>
+              <p class="display-4 my-4 text-primary fw-bold">20% off</p>
+              <a href="#" class="btn btn-outline-primary btn-md mt-3">Redeem coupon</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-8 col-lg-4 col-xl-3">
+          <div class="card border-warning border-2">
+            <div class="card-body text-center py-4">
+              <h4 class="card-title">Golden Plate</h4>
+              <p class="lead card-subtitle">Offer a special seafood platter that includes a variety of seafood items (A piece of Salmon and 200 gm shrimp)</p>
+              <p class="display-5 my-4 text-warning fw-bold">699 EGP</p>
+              <a href="#" class="btn btn-outline-warning btn-md mt-3">Buy Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  <!--the cards end here-->
+    </section>
+    <section id="about">
+      <!--Accordion-->
+      <div class="container-md">
+  <div class="text-center">
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Our Journey
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <strong>Our Journey began in 2004,</strong> when our owner a sailor called Harry.Harry was a normal sailor who loved fish alot.He decided to take his journey to the next level and open a restaurant.With his years of experience at sea and a deep passion for seafood, Harry's dream of creating a culinary haven for fish enthusiasts was about to set sail. Little did he know, his seafood restaurant would soon become a beloved coastal gem.
+          </div>
+        </div>
+      </div>
+  </div>
+      </div>
+    </section>
+    <header>
+    </header>
+    <script src="firstclient.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>  </body>
+  </html>
